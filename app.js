@@ -6,6 +6,7 @@
   const next = document.getElementById('next');
   const pagination = document.querySelector('.question-pagination');
   if (!articles.length) return;
+  const chapterTitle = document.querySelector('.breadcrumb span:last-child').textContent + document.querySelector('.chapter-intro h1').textContent;
   function render(moveFocus = false) {
     const match = /^#q(\d+)$/.exec(location.hash);
     const number = match ? Number(match[1]) : 1;
@@ -24,7 +25,7 @@
     next.hidden = current === articles.length;
     document.getElementById('position').textContent = `${current} / ${articles.length}`;
     pagination.hidden = false;
-    document.title = `习题 ${current} · 第二章线性规划 · 运筹学`;
+    document.title = `习题 ${current} · ${chapterTitle} · 运筹学`;
     if (moveFocus) {
       const heading = articles[current - 1].querySelector('h2');
       heading.setAttribute('tabindex', '-1');
